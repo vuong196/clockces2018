@@ -22,8 +22,7 @@ export default {
   mounted () {
     axios({
       method: 'GET',
-      // url: 'https://cors-anywhere.herokuapp.com/https://search-city.herokuapp.com/city'
-      url: 'https://www.jsonstore.io/dc044374c83f1083a65ef85d1cb29005129f19bf99702270368ddebc3febe679'
+      url: 'https://cors-anywhere.herokuapp.com/https://search-city.herokuapp.com/city'
     }).then(
       results => { this.cities = results.data },
       error => {
