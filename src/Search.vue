@@ -1,36 +1,33 @@
 <template>
-	<div class="searchform">
-		<h1> Your IP is {{ ip }}</h1>
-	</div>
+  <div id="searchform">
+        <input type="text" v-model="searchtext" list="listofCities" placeholder="Search city..." />
+        <datalist id="listofCities" >
+          <option v-for="(city, idx) in cities" :key="idx">
+            <h1>{{city.city}}</h1>
+            <p>{{city.country}}</p>
+          </option>
+        </datalist>
+  </div>
 </template>
-
 <script>
-import axios from "axios";
-export default{
-	name: 'Search',
-	date () {
-		return {
-			ip:"",
-		}
-	},
-	mounted () {
-		axios({ method: "GET", "url":"https://httpbin.org/ip"}).then(result =>{
-			this.ip= result.origin;
-			console.origin;
-		}, error =>{
-			console.error(error);
-		});
-	},
-	methods: {
-		sendData () {
-			axios({ method: "POST", "url":"https://httpbin.org/ip"})
-		}
-	}
-}	
+import axios from 'axios'
+export default {
+  name: 'searchform',
+  data () {
+    return {
+      cities: [],
+      searchtext: ''
+    }
+  },
+}
 </script>
-
 <style>
-	h1{
-		font-weight: normal;
-	}
+#searchform {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>
