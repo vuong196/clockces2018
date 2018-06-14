@@ -1,25 +1,26 @@
 {
-  "name": "vuong196",
+  "name": "WorldClock",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "Vuong <thanhvuongvuong96@gmail.com>",
   "private": true,
   "scripts": {
-    "postinstall": "npm install express",
+    "postinstall": "npm install express --save",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
+    "lint": "eslint --fix --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js",
+    "start": "node server.js",
     "deploy": "git subtree push — prefix dist heroku master"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.3",
+    "moment": "^2.22.2",
     "vue": "^2.5.2",
-    "vue-instantsearch": "^1.7.0",
+    "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
