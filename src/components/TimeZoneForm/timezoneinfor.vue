@@ -1,48 +1,55 @@
 <template>
-    <div id="timezoneinfor" onload="startTime()">
+    <div id="timezoneinfor">
         <div class="timezone_hour">
-            +5
+            {{timezone}}
         </div>
         <div class="timezone_place">
             <div class="timezone_city">
-                <a>Đà Nẵng</a>
+                <a>{{city}}</a>
             </div>
             <div class="timezone_country">
-                <a>Việt Nam</a>
+                <a>{{country}}</a>
             </div>
         </div>
         <div class="timezone_datetime">
-            <div id="txt"></div>
+            <a>{{hour}}</a>
+            <a>{{date}}</a>
         </div>
     </div>
 </template>
 
-
 <script>
-function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('txt').innerHTML =
-    h + ":" + m + ":" + s;
-    var t = setTimeout(startTime, 500);
-}
-function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-}
+import moment from 'moment'
+
 export default {
-    name: 'timezoneinfor',
+  name: 'timezoneinfor',
+  data () {
+    return {
+      city: 'Đà Nẵng',
+      country: 'Việt Nam',
+      timezone: '+7',
+      date: '',
+      hour: ''
+    }
+  },
+  methods: {
+    time () {
+      var self = this
+      this.date = moment().format('MMM Do YY')
+      this.hour = moment().format('LTS')
+      setInterval(self.time, 1000)
+    }
+  },
+  mounted: function () {
+    this.time()
+  }
 }
 </script>
 
 <style>
 #timezoneinfor{
     float: right;
-    width: 20%;
+    width: 25%;
     height:100%;
     border-left:solid 2px #a7a7a7;
 }
@@ -52,7 +59,7 @@ export default {
     color:rgb(167, 167, 167);
     font-weight: bold;
     text-align: center;
-    float: left;  
+    float: left;
     padding-top: 25px;
     padding-left:10px;
 }
