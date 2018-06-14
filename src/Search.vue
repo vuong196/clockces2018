@@ -19,6 +19,18 @@ export default {
       searchtext: ''
     }
   },
+  mounted () {
+    axios({
+      method: 'GET',
+      // url: 'https://cors-anywhere.herokuapp.com/https://search-city.herokuapp.com/city'
+      url: 'https://www.jsonstore.io/dc044374c83f1083a65ef85d1cb29005129f19bf99702270368ddebc3febe679'
+    }).then(
+      results => { this.cities = results.data },
+      error => {
+        console.error(error)
+      })
+  },
+  
 }
 </script>
 <style>
