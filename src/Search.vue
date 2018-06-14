@@ -30,6 +30,12 @@ export default {
         console.error(error)
       })
   },
+  watch: {
+    searchtext: function () {
+      if (!this.searchtext.length) return this.cities
+      this.cities = this.cities.filter(city => (city.city.toLowerCase().indexOf(this.searchtext.toLowerCase()) > -1))
+    }
+  }
   
 }
 </script>
