@@ -11,7 +11,7 @@
 </template>
 <script>
 import axios from 'axios'
-
+var l = 'https://cors-anywhere.herokuapp.com/https://world-clock96.herokuapp.com/search-city/nwe-york'
 export default {
   name: 'searchform',
   data () {
@@ -20,11 +20,11 @@ export default {
       searchtext: ''
     }
   },
-  props: ['searchtext'],
+  props: ['citychosen'],
   mounted () {
     axios({
       method: 'GET',
-      url: 'https://cors-anywhere.herokuapp.com/https://clock-ces.herokuapp.com/topic'
+      url: l
     }).then(
       results => { this.cities = results.data },
       error => {
@@ -37,6 +37,7 @@ export default {
       this.cities = this.cities.filter(city => (city.city.toLowerCase().indexOf(this.searchtext.toLowerCase()) > -1))
     }
   },
+
 
 }
 </script>
