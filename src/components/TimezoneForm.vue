@@ -1,8 +1,8 @@
 <template>
   <div class="formtimezone">
     <timezone-row></timezone-row>
-    <timezone-infor :data="infor"></timezone-infor>
-    <div style="float:left; padding:15px;padding-top:25px; width:5%;">
+    <timezone-infor v-bind:city='city'></timezone-infor>
+    <div class="btn">
       <i class="small material-icons">home</i>
       <i class="small material-icons">delelte</i>
     </div>
@@ -17,26 +17,36 @@ export default {
     'timezone-row': timezonerow,
     'timezone-infor': timezoneinfor
   },
+  props: {
+    city: {
+      kh: 'US',
+      cityName: 'Cà Mau',
+      country: 'Việt Nam',
+      timezone: '+7',
+      date: '',
+      hour: ''
+    }
+  },
   data () {
     return {
-      infor: {
-        city: 'Hà Nội',
-        country: 'Việt Nam',
-        timezone: '+7',
-        date: '',
-        hour: ''
-      }
     }
   }
 }
 </script>
-<style scope>
+<style scoped>
 .formtimezone{
-  margin:15px;
-  width:97%;
-  position: fixed;
+  margin:10px;
+  width:1176px;
   height:80px;
   border-radius:25px;
   border: solid 2px #a7a7a7;
+  background-color: white;
+}
+.btn {
+  float:left;
+  text-align: center;
+  padding-top:25px;
+  padding-left:15px;
+  width:5%;
 }
 </style>
