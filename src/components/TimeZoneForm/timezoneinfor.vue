@@ -1,19 +1,18 @@
 <template>
     <div id="timezoneinfor">
         <div class="timezone_hour">
-            {{timezone}}
+            {{city.timezone}}
         </div>
         <div class="timezone_place">
             <div class="timezone_city">
-                <a>{{city}}</a>
+                <a>{{city.cityName}}</a>
             </div>
             <div class="timezone_country">
-                <a>{{country}}</a>
+                {{city.country}}
             </div>
         </div>
         <div class="timezone_datetime">
-            <a>{{hour}}</a>
-            <a>{{date}}</a>
+            {{city.hour}}
         </div>
     </div>
 </template>
@@ -25,18 +24,21 @@ export default {
   name: 'timezoneinfor',
   data () {
     return {
-      city: 'Đà Nẵng',
-      country: 'Việt Nam',
-      timezone: '+7',
-      date: '',
-      hour: ''
+      city: {
+        kh: 'US',
+        cityName: 'Đà Nẵng',
+        country: 'Việt Nam',
+        timezone: '+7',
+        date: '',
+        hour: ''
+      }
     }
   },
   methods: {
     time () {
       var self = this
-      this.date = moment().format('MMM Do YY')
-      this.hour = moment().format('LTS')
+      this.city.date = moment().format('MMM Do YY')
+      this.city.hour = moment().format('LTS')
       setInterval(self.time, 1000)
     }
   },
@@ -65,22 +67,25 @@ export default {
 }
 
 .timezone_city{
-    float: left;
+    float: right;
     padding-left:10px;
-    padding-top: 20px;
+    padding-top: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
+    font-size: 20px;
 }
 .timezone_country{
-float: left;
+    float: right;
     padding-left:4px;
-    padding-top: 20px;
+    padding-top: 18px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .timezone_datetime{
-    float: left;
+    float: right;
     padding-left:10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
+    font-size: 20px;
+
 }
 </style>
