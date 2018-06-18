@@ -37,7 +37,11 @@ export default {
       this.cities = this.cities.filter(city => (city.city.toLowerCase().indexOf(this.searchtext.toLowerCase()) > -1))
     }
   },
-
+  methods: {
+    getcity: function (event) {
+      this.citychosen = this.city.cityName;
+    }
+  }
 
 }
 </script>
