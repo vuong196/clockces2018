@@ -90,7 +90,6 @@ export default {
 #timezonerow{
   float:right;
   width:70%;
-  margin-top:-2.7px;
 }
 .cam{
     background-color: rgb(148, 148, 148);
@@ -105,7 +104,9 @@ a {
   outline: 0;
 }
 .navigation {
-  height:100%;
+  height:76px;
+  width:800px;
+  float:right;
   margin-right:-4px;
 }
 
@@ -119,8 +120,7 @@ a {
     width:4.18%;
     border-bottom: solid 2px rgb(87, 87, 87);
     border-top: solid 2px rgb(87, 87, 87);
-    padding-top:31px;
-    padding-bottom:31px;
+    padding-top:28px;
     margin-top:-2px;
     margin-bottom:-2px;
 }
