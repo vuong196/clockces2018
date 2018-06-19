@@ -20,7 +20,7 @@ export default {
         {cityName: 'Lào'},
         {cityName: 'Đà Nẵng'},
         {cityName: 'Đà Nẵng'},
-        {cityName: 'Đà Nẵng'},
+        {cityName: 'Đà Nẵng'}
       ]
     }
   }

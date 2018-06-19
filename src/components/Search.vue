@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     getcity: function (event) {
-      this.citychosen = this.city.cityName;
+      this.citychosen = this.city.cityName
     }
   }
 

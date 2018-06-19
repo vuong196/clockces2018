@@ -29,3 +29,12 @@ Step by step in your folder containning all your vue project
    
    npm run dev
 
+6. Create new project
+
+    vue init webpack my-app
+
+    cd my-app
+    
+    npm install
+    
+    npm run dev
