@@ -12,7 +12,7 @@ Step by step in your folder containning all your vue project
 3.  Update npm version
 
     npm install npm@latest -g
-    
+
 4. install vue enviroment
 
     npm install -g vue-cli
@@ -22,5 +22,10 @@ Step by step in your folder containning all your vue project
    git clone https://gitlab.com/codeengine-interns/2018-GI-Joe-front-end.git
 
    cd 2018-GI-Joe-front-end
+
    npm install vue
+
+   npm run build
+   
+   npm run dev
 
