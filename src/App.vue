@@ -23,8 +23,20 @@ export default {
     'getIP': getIp,
     'timezone-list': listtimezone
   },
+  props: {
+    citychosen: {
+      type: String,
+      default: ''
+    },
+    listcities: {
+      type: Array,
+      default: []
+    }
+  },
   data () {
-    return {}
+    return {
+
+    }
   },
   mounted () {
   }
@@ -41,21 +53,18 @@ export default {
   margin-top: 60px;
 }
 .Board {
-  background-color: #ededed;
+  background-color: #ffffff;
   width: 1200px;
-  height: 400px;
+  min-height: 400px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 30px;
+  border-radius: 0px;
   position:relative;
-  border: solid 2px #a7a7a7;
-
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 .header {
-  background-color: #ededed;
-  width: 1100px;
-  height: 65px;
-  margin:5px;
-  border-radius: 35px;
+  background-color: #ffffff;
+  width: 100%;
+  height: 80px;
 }
 </style>

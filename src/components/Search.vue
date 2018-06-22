@@ -1,45 +1,66 @@
 <template>
-  <div id="searchform">
-      <form>
-        <input type="search" v-model="searchtext" list="listofCities" placeholder="Search city..." />
-        <datalist id="listofCities" >
-          <option v-for="(city, idx) in cities" :key="idx" :value="city.cityName" :class="city.country" v-on:click="getcity">
-          </option>
-        </datalist>
-      </form>
+  <div style="padding:10px;width:30%;">
+    <md-autocomplete style="border:1px;" v-model="searchtext" :md-options="citylist" :md-fuzzy-search="true" @md-selected="getcity" @md-changed="getCountries" @md-opened="open">
+      <label>Search city...</label>
+
+      <template slot="md-autocomplete-item" slot-scope="{ item, term }">
+        <md-highlight-text :md-term="term">
+          {{ item.cityName }}
+        </md-highlight-text>
+      </template>
+
+      <template slot="md-autocomplete-empty" slot-scope="{ term }">
+        No cities matching "{{ term }}" were found.
+      </template>
+    </md-autocomplete>
   </div>
 </template>
 <script>
 import axios from 'axios'
-var l = 'https://cors-anywhere.herokuapp.com/https://world-clock96.herokuapp.com/search-city/nwe-york'
+var l = 'https://cors-anywhere.herokuapp.com/https://world-clock2018.herokuapp.com/search-city/'
 export default {
   name: 'searchform',
   data () {
     return {
       cities: [],
-      searchtext: ''
-    }
-  },
-  props: ['citychosen'],
-  mounted () {
-    axios({
-      method: 'GET',
-      url: l
-    }).then(
-      results => { this.cities = results.data },
-      error => {
-        console.error(error)
-      })
-  },
-  watch: {
-    searchtext: function () {
-      if (!this.searchtext.length) return this.cities
-      this.cities = this.cities.filter(city => (city.city.toLowerCase().indexOf(this.searchtext.toLowerCase()) > -1))
+      searchtext: '',
+      citylist: []
     }
   },
   methods: {
-    getcity: function (event) {
-      this.citychosen = this.city.cityName
+    open () {
+      axios({
+        method: 'GET',
+        url: l + 'ho_chua_mua'
+      }).then(
+        results => {
+          this.citylist = []
+          this.cities = results.data
+          this.citylist = this.cities
+        },
+        error => {
+          alert(error)
+        })
+      
+    },
+    getcity: function (searchTerm) {
+      if (!(searchTerm in this.$parent.$props.listcities)) 
+        { 
+          this.$parent.$props.listcities.push(searchTerm) 
+        }
+    },
+    getCountries (searchTerm) {
+      this.citylist = new Promise(resolve => {
+        window.setTimeout(() => {
+          if (!searchTerm) {
+            resolve(this.cities)
+          } else {
+            const term = searchTerm.toLowerCase()
+
+            resolve(this.cities.filter(({ cityName }) => cityName.toLowerCase().includes(term)))
+          }
+        }, 500)
+      })
     }
   }
 
@@ -47,50 +68,11 @@ export default {
 </script>
 <style>
 #searchform {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;
   float:left;
   margin-top: 6px;
   margin-left:6px;
-}
-#searchform input {
-  outline: none;
-}
-#searchform input[type=search]{
-  font-family:inherit;
-  font-size:100%;
-  height:50px;
-}
-#searchform input::-webkit-search-decoration,
-input::-webkit-search-cancel-button,input::-webkit-calendar-picker-indicator {
-  display: none;
-}
-#searchform input[type=search] {
-  background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
-  border: solid 2px #ccc;
-  padding: 9px 10px 9px 32px;
-  width: 250px;
-  -webkit-border-radius: 10em;
-  -moz-border-radius: 10em;
-  border-radius: 10em;
-  -webkit-transition: all .5s;
-  -moz-transition: all .5s;
-  transition: all .5s;
-}
-#searchform input[type=search]:focus {
-  width: 250px;
-  background-color: #fff;
-  border: solid 2px #a7a7a7;
-
-}
-#searchform datalist {
-
-}
-#searchform input:-moz-placeholder {
-  color: #999;
-}
-#searchform input::-webkit-input-placeholder {
-  color: #999;
 }
 
 </style>

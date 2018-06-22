@@ -1,13 +1,13 @@
 <template>
     <div class="listTimeZone">
-        <div v-for="(cityName, namecity) in listcities" :key="namecity">
-            <timezone-form :data="cityName"></timezone-form>
+        <div v-for="(city, namecity) in listcities" :key="namecity">
+            <timezone-form :city='city'></timezone-form>
         </div>
+        {{citychosen}}
     </div>
 </template>
 <script>
 import timezoneform from './TimezoneForm'
-
 export default {
   name: 'listtimezone',
   components: {
@@ -15,24 +15,30 @@ export default {
   },
   data () {
     return {
-      listcities: [
-        {cityName: 'Đà Nẵng'},
-        {cityName: 'Lào'},
-        {cityName: 'Đà Nẵng'},
-        {cityName: 'Đà Nẵng'},
-        {cityName: 'Đà Nẵng'}
-      ]
+      listcities: []
     }
+  },
+  mounted () {
+    this.listcities = this.$parent.$props.listcities
+  },
+  watch: {
+    listcities: function () {
+      this.listcities = this.$parent.$props.listcities
+    }
+  },
+  methods: {
   }
 }
 </script>
 <style scoped>
 .listTimeZone {
-  background-color: #f7f9ff;
-  width: 1200px;
-  min-height: 350px;
-  border-radius: 30px;
-  border: solid 2px #a7a7a7;
-  margin-left:-2px
+  margin-top:30px;
+  background-color: #FFFFFF;
+  width: 100%;
+  padding: 2px;
+  min-height: 300px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+
 }
 </style>

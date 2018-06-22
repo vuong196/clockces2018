@@ -12,48 +12,42 @@
             </div>
         </div>
         <div class="timezone_datetime">
-            {{city.hour}}
+            {{hour}}
         </div>
     </div>
 </template>
-
 <script>
+import axios from 'axios'
 import moment from 'moment'
-
 export default {
   name: 'timezoneinfor',
+  props: ['cityName'],
   data () {
     return {
-      city: {
-        kh: 'US',
-        cityName: 'Đà Nẵng',
-        country: 'Việt Nam',
-        timezone: '+7',
-        date: '',
-        hour: ''
-      }
+        city:[]
     }
+  },
+  mounted () {
+    this.city = this.$parent.$props.city
   },
   methods: {
     time () {
       var self = this
-      this.city.date = moment().format('MMM Do YY')
-      this.city.hour = moment().format('LTS')
+      this.date = moment().format('MMM Do YY')
+      this.hour = moment().format('LTS')
       setInterval(self.time, 1000)
     }
-  },
-  mounted: function () {
-    this.time()
   }
 }
 </script>
 
 <style>
 #timezoneinfor{
+    background-color:rgb(255, 255, 255);
     float: right;
     width: 25%;
     height:100%;
-    border-left:solid 2px #a7a7a7;
+    border-radius: 4px;
 }
 .timezone_hour{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -65,27 +59,31 @@ export default {
     padding-top: 25px;
     padding-left:10px;
 }
-
+.timezone_place{
+    padding-top:10px;
+    width:50%;
+    float:left
+}
 .timezone_city{
-    float: right;
-    padding-left:10px;
-    padding-top: 10px;
+    float: left;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     font-size: 20px;
+    text-align: right;
 }
 .timezone_country{
-    float: right;
-    padding-left:4px;
-    padding-top: 18px;
+    padding-left:5px;
+    float: left;
+    padding-top:7px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .timezone_datetime{
+    width:50%;
     float: right;
     padding-left:10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 17px;
 
 }
 </style>

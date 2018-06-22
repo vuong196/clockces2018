@@ -3,7 +3,7 @@
   <div id="timezonerow">
       <nav class="navigation navigation--inline">
         <ul>
-            <li class="cam" style="border-top-left-radius:25px;border-bottom-left-radius: 25px;border-left:solid 2px rgb(87, 87, 87);margin-left:2px;">
+            <li class="cam">
             <a href="#">0</a>
             </li>
             <li class="cam">
@@ -72,7 +72,7 @@
             <li class="cam">
               <a href="#">22</a>
             </li>
-            <li class="cam" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;border-right:solid 2px rgb(87, 87, 87);margin-right:2px;">
+            <li class="cam">
               <a  href="#">23</a>
             </li>
         </ul>
@@ -88,8 +88,10 @@ export default {
 
 <style>
 #timezonerow{
+  margin-left: 5px;
   float:right;
   width:70%;
+  height:100%;
 }
 .cam{
     background-color: rgb(148, 148, 148);
@@ -104,25 +106,22 @@ a {
   outline: 0;
 }
 .navigation {
-  height:76px;
-  width:800px;
+  height:100%;
+  width:100%;
   float:right;
-  margin-right:-4px;
+  margin: 0;
+    padding: 0;
 }
 
 .navigation ul {
     list-style: none;
+    height: 100%;
     margin: 0;
     padding: 0;
     color:#ffffff;
 }
 .navigation ul li {
-    width:4.18%;
-    border-bottom: solid 2px rgb(87, 87, 87);
-    border-top: solid 2px rgb(87, 87, 87);
-    padding-top:28px;
-    margin-top:-2px;
-    margin-bottom:-2px;
+    width:10%;
 }
 
 .navigation a {
@@ -134,6 +133,7 @@ a {
   font-size: 15px;
   color: white;
   font-weight: bold;
+  padding-top: 25px;
 }
 
 .navigation a:focus::after,

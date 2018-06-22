@@ -1,6 +1,6 @@
 <template>
   <div id="getIP">
-    <h1>Your IP is {{ ip }}</h1>
+    <h1>Your location is {{ ip.city }}</h1>
   </div>
 </template>
 
@@ -14,8 +14,8 @@ export default {
     }
   },
   mounted () {
-    axios({ method: 'GET', 'url': 'https://httpbin.org/ip' }).then(result => {
-      this.ip = result.data.origin
+    axios({ method: 'GET', 'url': 'http://ip-api.com/json' }).then(result => {
+      this.ip = result.data
     }, error => {
       console.error(error)
     })
